@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'config/size/size_config.dart';
+import 'package:thikedaardotcom/bindings/bindings.dart';
 import 'screens/login_screen/login_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Get.put<LoginController>(LoginController());
   runApp(const MyApp());
 }
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: GlobalBindings(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
