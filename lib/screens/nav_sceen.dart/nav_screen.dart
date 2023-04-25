@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thikedaardotcom/screens/home_screen/home_screen_navigator.dart';
+import 'package:thikedaardotcom/screens/my_projects_screen/my_projects_screen_navigator.dart';
 import 'package:thikedaardotcom/screens/nav_sceen.dart/controller/nav_screen_controller.dart';
 
 import '../design_your_house_screen/design_your_house_navigator.dart';
@@ -31,7 +32,7 @@ class NavScreen extends StatelessWidget {
             children: const [
               HomeScreenNavigator(),
               Scaffold(),
-              Scaffold(),
+              MyProjectsScreenNavigator(),
               DesignYourDreamHouseScreenNavigator()
             ],
           )),
