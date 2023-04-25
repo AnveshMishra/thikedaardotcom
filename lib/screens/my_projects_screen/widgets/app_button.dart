@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thikedaardotcom/config/size/size_config.dart';
 
 class AppButton extends StatefulWidget {
   final String text;
@@ -57,7 +58,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
         child: Container(
           margin: const EdgeInsets.only(left: 32, right: 32),
           // constraints: BoxConstraints(),
-          height: 48,
+          height: (SizeConfig.blackSizeVertical ?? 1) * 7,
           decoration: BoxDecoration(
             color: _buttonColorAnimation.value,
             borderRadius: BorderRadius.circular(8),
@@ -66,7 +67,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
             child: Text(
               widget.text,
               style: TextStyle(
-                  fontSize: 24,
+                  fontSize: (SizeConfig.blackSizeHorizontal ?? 1) * 5.5,
                   fontWeight: FontWeight.bold,
                   color: _textColorAnimation.value),
             ),
