@@ -14,7 +14,7 @@ class LoginController extends GetxController {
     apiResponse =
         await LoginRespository().login(userName: userName, password: password);
     if (apiResponse.status == ApiResponseStatus.success) {
-      Get.off(const NavScreen());
+      Get.off(() => const NavScreen());
     }
     update();
   }

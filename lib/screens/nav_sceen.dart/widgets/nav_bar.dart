@@ -18,7 +18,8 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(6),
+      borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(6), topRight: Radius.circular(6)),
       child: BottomAppBar(
         color: AppColors.colorFromHex('#384247'),
         child: SizedBox(

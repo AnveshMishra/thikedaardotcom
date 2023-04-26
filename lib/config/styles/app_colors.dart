@@ -15,6 +15,7 @@ class AppColors {
   static const Color sterihealColor = Colors.cyan;
   static const Color LIGHT_PINK = Colors.pink;
   static const Color WHITE = Colors.white;
+  static Color bottomNavigationBarColor = AppColors.colorFromHex('#384247');
 
   static const Color primaryColor = Color(0xFF023878);
 
