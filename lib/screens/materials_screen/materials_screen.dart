@@ -7,6 +7,7 @@ import 'package:thikedaardotcom/screens/materials_screen/widgets/filter_button.d
 import '../../config/size/size_config.dart';
 import 'widgets/header_widget.dart';
 import 'widgets/icons_button.dart';
+import 'widgets/product_widget.dart';
 import 'widgets/search_bar.dart';
 
 class MaterialsScreen extends StatelessWidget {
@@ -65,107 +66,103 @@ class MaterialsScreen extends StatelessWidget {
         ),
       ),
       // backgroundColor: ,
-      body: CustomScrollView(
-          // physics: const NeverScrollableScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(
-              child: Container(
-                decoration: BoxDecoration(
-                    color: AppColors.bottomNavigationBarColor,
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(24),
-                        bottomRight: Radius.circular(24))),
+      body: CustomScrollView(slivers: [
+        SliverToBoxAdapter(
+          child: Container(
+            decoration: BoxDecoration(
+                color: AppColors.bottomNavigationBarColor,
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(24),
+                    bottomRight: Radius.circular(24))),
+            child: Column(
+              children: [
+                Padding(
+                  padding: horizontalPadding,
+                  child: const PromoBanner(),
+                ),
+                SizedBox(
+                  height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
+                ),
+              ],
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: double.maxFinite,
+                padding: horizontalPadding,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    )),
                 child: Column(
+                  // mainAxisSize: MainAxisSize.min,
                   children: [
-                    Padding(
-                      padding: horizontalPadding,
-                      child: const PromoBanner(),
+                    SizedBox(
+                      height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
+                    ),
+                    const HeaderWidget(
+                      text: 'Categories',
+                    ),
+                    SizedBox(
+                      height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        IconsButton(),
+                        IconsButton(),
+                        IconsButton(),
+                        IconsButton(),
+                        IconsButton(),
+                      ],
+                    ),
+                    SizedBox(
+                      height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
+                    ),
+                    const HeaderWidget(
+                      text: 'Featured products',
+                    ),
+                    SizedBox(
+                      height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        FilterButton(isSelected: true, text: 'All'),
+                        FilterButton(isSelected: false, text: 'newest'),
+                        FilterButton(isSelected: false, text: 'popular'),
+                        FilterButton(isSelected: false, text: 'trending'),
+                      ],
                     ),
                     SizedBox(
                       height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
                     ),
                   ],
                 ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: double.maxFinite,
-                    padding: horizontalPadding,
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          topRight: Radius.circular(16),
-                        )),
-                    child: Column(
-                      // mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
-                        ),
-                        const HeaderWidget(
-                          text: 'Categories',
-                        ),
-                        SizedBox(
-                          height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            IconsButton(),
-                            IconsButton(),
-                            IconsButton(),
-                            IconsButton(),
-                            IconsButton(),
-                          ],
-                        ),
-                        SizedBox(
-                          height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
-                        ),
-                        const HeaderWidget(
-                          text: 'Featured products',
-                        ),
-                        SizedBox(
-                          height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            FilterButton(isSelected: true, text: 'All'),
-                            FilterButton(isSelected: false, text: 'newest'),
-                            FilterButton(isSelected: false, text: 'popular'),
-                            FilterButton(isSelected: false, text: 'trending'),
-                          ],
-                        ),
-                        SizedBox(
-                          height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SliverPadding(
-              padding: horizontalPadding,
-              sliver: SliverAlignedGrid.count(
-                  mainAxisSpacing: 4,
-                  crossAxisSpacing: 4,
-                  itemCount: 200,
-                  itemBuilder: (_, index) {
-                    return Container(
-                      color: Colors.green,
-                      height: (SizeConfig.blackSizeVertical ?? 1) * 10,
-                      child: Text("$index"),
-                    );
-                  },
-                  crossAxisCount: 4),
-            ),
-          ]),
+              )
+            ],
+          ),
+        ),
+        SliverPadding(
+          padding: horizontalPadding,
+          sliver: SliverAlignedGrid.count(
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 4,
+              itemCount: 200,
+              itemBuilder: (_, index) {
+                return ProductWidget(
+                  text: 'Product name $index',
+                );
+              },
+              crossAxisCount: 4),
+        ),
+      ]),
     );
   }
 }
