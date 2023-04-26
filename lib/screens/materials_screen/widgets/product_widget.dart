@@ -21,7 +21,10 @@ class ProductWidget extends StatelessWidget {
         ),
         Text(
           text,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: Theme.of(context)
+              .primaryTextTheme
+              .headlineSmall
+              ?.copyWith(fontWeight: FontWeight.bold),
         ),
         SizedBox(
           height: (SizeConfig.blackSizeVertical ?? 1) * 0.5,
@@ -35,9 +38,9 @@ class ProductWidget extends StatelessWidget {
                     size: 8,
                   )),
         ),
-        const Text(
+        Text(
           r"$12",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: Theme.of(context).primaryTextTheme.headlineSmall,
         ),
         SizedBox(
           height: (SizeConfig.blackSizeVertical ?? 1) * 2,

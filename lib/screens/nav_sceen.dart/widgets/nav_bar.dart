@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../config/styles/app_colors.dart';
 
@@ -75,11 +76,13 @@ class IconBottomBar extends StatelessWidget {
       required this.text,
       required this.icon,
       required this.selected,
-      required this.onPressed})
+      required this.onPressed,
+      this.iconWidget})
       : super(key: key);
   final String text;
   final IconData icon;
   final bool selected;
+  final Widget? iconWidget;
   final Function() onPressed;
 
   final primaryColor = const Color(0xff4338CA);
@@ -90,11 +93,12 @@ class IconBottomBar extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(
-          onPressed: onPressed,
-          icon:
-              Icon(icon, size: 25, color: selected ? accentColor : Colors.grey),
-        ),
+        iconWidget ??
+            IconButton(
+              onPressed: onPressed,
+              icon: Icon(icon,
+                  size: 25, color: selected ? accentColor : Colors.grey),
+            ),
         Text(
           text,
           style: TextStyle(

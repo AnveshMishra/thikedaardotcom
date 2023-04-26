@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../config/size/size_config.dart';
+import '../../../config/styles/app_colors.dart';
 
 class PromoBanner extends StatelessWidget {
   const PromoBanner({super.key});
@@ -9,32 +11,44 @@ class PromoBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.amber,
+        color: AppColors.colorFromHex('#F1AD0A'),
         borderRadius: BorderRadius.circular(16),
       ),
       width: double.maxFinite,
-      height: (SizeConfig.blackSizeVertical ?? 1) * 13,
+      height: 14.h,
       child: Row(
         children: [
           Padding(
             padding: EdgeInsets.only(
                 left: (SizeConfig.blackSizeHorizontal ?? 1) * 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 0.8.h,
+                    ),
+                    Text(
+                      'Free Voucher',
+                      style: Theme.of(context).primaryTextTheme.headlineLarge,
+                    ),
+                    SizedBox(
+                      height: 0.8.h,
+                    ),
+                    Text("Tap to claim your \nFree discount voucher",
+                        style:
+                            Theme.of(context).primaryTextTheme.headlineMedium),
+                  ],
+                ),
                 SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  'Free Voucher',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Text("Tap to claim your \nFree discount voucher",
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  width: 16.w,
+                  child: Image.asset(
+                    'assets/images/percentpic.png',
+                    height: SizeConfig.blackSizeVertical! * 45,
+                    fit: BoxFit.contain,
+                  ),
+                )
               ],
             ),
           ),

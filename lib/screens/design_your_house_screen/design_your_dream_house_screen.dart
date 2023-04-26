@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../config/size/size_config.dart';
 import '../../config/styles/app_colors.dart';
@@ -38,12 +39,18 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                 color: AppColors.colorFromHex('#F1AD0A'),
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text('Get Free Consultation today',
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          const Text('Get Free Consultation today',
                               style: TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'Montserrat',
                                   color: Colors.white,
                                   fontWeight: FontWeight.normal)),
+                          SizedBox(
+                            height: 4.h,
+                          ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.4,
                             height: MediaQuery.of(context).size.height * 0.07,
@@ -80,7 +87,7 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(42),
                             topRight: Radius.circular(42)),
-                        color: Color(0xffffafafa),
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -103,18 +110,10 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         left: 30, right: 15),
                                     child: Text(
-                                        "To get AI generated design for your dream home please fill the form",
-                                        // style: mOswaldBold.copyWith(
-                                        //     fontSize: 25,
-                                        //     color: mBlack,
-                                        //     fontFamily: 'Montserrat',
-                                        //     fontWeight: FontWeight.w700),
-                                        // textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold)))),
+                                        "To get AI generated design for your dream home please fill the form.",
+                                        style: Theme.of(context)
+                                            .primaryTextTheme
+                                            .headlineLarge))),
                           ],
                         ),
                         Padding(
@@ -132,10 +131,10 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                     decoration: InputDecoration(
                                       filled: true,
                                       hintText: 'Enter your city',
-                                      hintStyle: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey[600]),
+                                      hintStyle: Theme.of(context)
+                                          .primaryTextTheme
+                                          .bodyMedium
+                                          ?.copyWith(color: Colors.black54),
                                       fillColor:
                                           AppColors.colorFromHex('#F1AD0A'),
                                       border: OutlineInputBorder(
@@ -153,10 +152,10 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                       decoration: InputDecoration(
                                         filled: true,
                                         hintText: "Enter Plot length",
-                                        hintStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[600]),
+                                        hintStyle: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: Colors.black54),
                                         fillColor:
                                             AppColors.colorFromHex('#F1AD0A'),
                                         border: OutlineInputBorder(
@@ -173,10 +172,10 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                       decoration: InputDecoration(
                                         filled: true,
                                         hintText: "Enter Plot width",
-                                        hintStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[600]),
+                                        hintStyle: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: Colors.black54),
                                         fillColor:
                                             AppColors.colorFromHex('#F1AD0A'),
                                         border: OutlineInputBorder(
@@ -193,10 +192,10 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                       decoration: InputDecoration(
                                         filled: true,
                                         hintText: "Enter Number of floors",
-                                        hintStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[600]),
+                                        hintStyle: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: Colors.black54),
                                         fillColor:
                                             AppColors.colorFromHex('#F1AD0A'),
                                         border: OutlineInputBorder(
@@ -213,10 +212,10 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                       decoration: InputDecoration(
                                         filled: true,
                                         hintText: "Require basement?",
-                                        hintStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[600]),
+                                        hintStyle: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: Colors.black54),
                                         fillColor:
                                             AppColors.colorFromHex('#F1AD0A'),
                                         border: OutlineInputBorder(
@@ -233,10 +232,10 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                       decoration: InputDecoration(
                                         filled: true,
                                         hintText: "Require stilt?",
-                                        hintStyle: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.grey[600]),
+                                        hintStyle: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: Colors.black54),
                                         fillColor:
                                             AppColors.colorFromHex('#F1AD0A'),
                                         border: OutlineInputBorder(
@@ -269,23 +268,13 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                       ),
                                       backgroundColor: Colors.black,
                                     ),
-                                    onPressed: () {
-                                      // Navigator.pushNamed(context, '/home');
-                                      // Navigator.of(context).push(
-                                      //   MaterialPageRoute(
-                                      //       builder: (context) =>
-                                      //           SelectYourHouseDesignPage()
-                                      //       //HomePage(),
-                                      //       ),
-                                      // );
-                                    },
+                                    onPressed: () {},
                                     child: Text(
                                       "VIEW NOW",
-                                      style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.white,
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
+                                      style: Theme.of(context)
+                                          .primaryTextTheme
+                                          .headlineLarge
+                                          ?.copyWith(color: Colors.white),
                                     ),
                                   ),
                                 )

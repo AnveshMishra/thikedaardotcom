@@ -12,13 +12,15 @@ class HeaderWidget extends StatelessWidget {
       children: [
         Text(
           text,
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: (SizeConfig.blackSizeHorizontal ?? 1) * 4.6),
+          style: Theme.of(context).primaryTextTheme.headlineMedium,
         ),
         const Spacer(),
-        const Text(
+        Text(
           "View more",
+          style: Theme.of(context)
+              .primaryTextTheme
+              .headlineSmall
+              ?.copyWith(color: Colors.grey.shade600),
         ),
         const Icon(Icons.arrow_forward)
       ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:thikedaardotcom/screens/home_screen/home_screen.dart';
 import 'package:thikedaardotcom/screens/nav_sceen.dart/controller/nav_screen_controller.dart';
 
 import '../my_projects_screen/my_projects_screen.dart';

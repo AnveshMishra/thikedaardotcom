@@ -64,13 +64,13 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(
-            child: Text(
-              widget.text,
-              style: TextStyle(
-                  fontSize: (SizeConfig.blackSizeHorizontal ?? 1) * 5.5,
-                  fontWeight: FontWeight.bold,
-                  color: _textColorAnimation.value),
-            ),
+            child: Text(widget.text,
+                style: Theme.of(context)
+                    .primaryTextTheme
+                    .headlineMedium
+                    ?.copyWith(
+                        color: _textColorAnimation.value,
+                        fontWeight: FontWeight.bold)),
           ),
         ),
       ),
