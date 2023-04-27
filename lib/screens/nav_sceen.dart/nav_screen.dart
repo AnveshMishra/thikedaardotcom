@@ -31,7 +31,7 @@ class NavScreen extends StatelessWidget {
       body: Obx(() => IndexedStack(
             index: landingPageController.tabIndex.value,
             children: const [
-              HomeScreenNavigator(),
+              Scaffold(),
               MaterialsScreen(),
               MyProjectsScreenNavigator(),
               DesignYourDreamHouseScreenNavigator()
