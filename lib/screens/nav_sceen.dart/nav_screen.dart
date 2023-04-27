@@ -6,6 +6,7 @@ import 'package:thikedaardotcom/screens/my_projects_screen/my_projects_screen_na
 import 'package:thikedaardotcom/screens/nav_sceen.dart/controller/nav_screen_controller.dart';
 
 import '../design_your_house_screen/design_your_house_navigator.dart';
+import '../view_your_dream_house/view_your_dream_house.dart';
 import 'widgets/nav_bar.dart';
 
 class NavScreen extends StatelessWidget {
@@ -31,7 +32,7 @@ class NavScreen extends StatelessWidget {
       body: Obx(() => IndexedStack(
             index: landingPageController.tabIndex.value,
             children: const [
-              Scaffold(),
+              ViewYourDreamHouse(),
               MaterialsScreen(),
               MyProjectsScreenNavigator(),
               DesignYourDreamHouseScreenNavigator()
