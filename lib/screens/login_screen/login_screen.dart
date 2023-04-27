@@ -7,6 +7,7 @@ import 'package:thikedaardotcom/screens/login_screen/repository/login_repository
 import '../../config/size/size_config.dart';
 import '../../config/styles/app_colors.dart';
 import '../../config/styles/app_styles.dart';
+import '../nav_sceen.dart/nav_screen.dart';
 // import '../../network/model/result.dart';
 // import '../home/home_bottom_nav.dart';
 
@@ -322,6 +323,7 @@ class _LogInPageState extends State<LogInPage> {
   }
 
   userLogin() async {
-    _controller.login(userName: '', password: '');
+    // _controller.login(userName: '', password: '');
+    Get.off(() => const NavScreen());
   }
 }
