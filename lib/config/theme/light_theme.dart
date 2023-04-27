@@ -4,6 +4,13 @@ import 'package:thikedaardotcom/config/styles/app_colors.dart';
 import 'package:thikedaardotcom/config/styles/fonts.dart';
 
 final ThemeData lightTheme = ThemeData(
+    filledButtonTheme: FilledButtonThemeData(
+      style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all<Color>(AppColors.appAccentAmber),
+          shape: MaterialStateProperty.all<OutlinedBorder>(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)))),
+    ),
     primaryTextTheme: TextTheme(
         headlineLarge: TextStyle(
             color: AppColors.accentText,
