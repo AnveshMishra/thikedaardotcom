@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thikedaardotcom/screens/home_screen/home_screen.dart';
 import 'package:thikedaardotcom/screens/nav_sceen.dart/controller/nav_screen_controller.dart';
+import 'package:thikedaardotcom/screens/view_your_dream_house/view_your_dream_house.dart';
 
 class HomeScreenNavigator extends StatelessWidget {
   const HomeScreenNavigator({super.key});
@@ -16,7 +17,7 @@ class HomeScreenNavigator extends StatelessWidget {
         return [
           GetPageRoute(
               settings: RouteSettings(name: initialRoute),
-              page: () => const HomeScreen())
+              page: () => const ViewYourDreamHouse())
         ];
       },
       onGenerateRoute: (RouteSettings settings) {

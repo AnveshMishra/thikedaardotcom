@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:thikedaardotcom/config/styles/app_colors.dart';
+import 'package:thikedaardotcom/screens/my_project_details/my_project_details.dart';
 
 import 'widgets/floor_plan_view.dart';
 
@@ -61,7 +63,12 @@ class ViewYourDreamHouse extends StatelessWidget {
                         height: 1.8.h,
                       ),
                       FilledButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(
+                            const MyProjectDetails(),
+                            id: 0,
+                          );
+                        },
                         icon: const Icon(Icons.phone),
                         label: Padding(
                           padding: EdgeInsets.symmetric(vertical: 1.4.h),

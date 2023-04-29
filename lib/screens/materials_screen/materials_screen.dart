@@ -6,6 +6,7 @@ import 'package:thikedaardotcom/screens/materials_screen/widgets/banner.dart';
 import 'package:thikedaardotcom/screens/materials_screen/widgets/filter_button.dart';
 
 import '../../config/size/size_config.dart';
+import '../../config/styles/app_styles.dart';
 import 'widgets/header_widget.dart';
 import 'widgets/icons_button.dart';
 import 'widgets/product_widget.dart';
@@ -16,9 +17,6 @@ class MaterialsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final horizontalPaddingVakue = (SizeConfig.blackSizeHorizontal ?? 1) * 10;
-    final horizontalPadding =
-        EdgeInsets.symmetric(horizontal: horizontalPaddingVakue);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(double.maxFinite, 12.h),
