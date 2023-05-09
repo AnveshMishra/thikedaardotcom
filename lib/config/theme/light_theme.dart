@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:thikedaardotcom/config/styles/app_colors.dart';
-import 'package:thikedaardotcom/config/styles/fonts.dart';
 
 final ThemeData lightTheme = ThemeData(
     filledButtonTheme: FilledButtonThemeData(

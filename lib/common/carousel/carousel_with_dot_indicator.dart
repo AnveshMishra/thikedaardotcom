@@ -5,8 +5,10 @@ import 'carousel_options.dart';
 import 'carousel_slider.dart';
 
 class CarauselWithDotIndicator extends StatefulWidget {
+  final double? viewPortFraction;
   final List<Widget> items;
-  const CarauselWithDotIndicator({super.key, required this.items});
+  const CarauselWithDotIndicator(
+      {super.key, required this.items, this.viewPortFraction});
 
   @override
   State<CarauselWithDotIndicator> createState() =>
@@ -23,7 +25,7 @@ class _CarauselWithDotIndicatorState extends State<CarauselWithDotIndicator> {
         CarouselSlider(
           items: widget.items,
           options: CarouselOptions(
-            viewportFraction: 1,
+            viewportFraction: widget.viewPortFraction ?? 1,
             autoPlay: true,
             onPageChanged: (index, reason) => _currentIndex.value = index,
           ),
