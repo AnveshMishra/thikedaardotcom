@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:thikedaardotcom/network/api_client.dart';
 import 'package:thikedaardotcom/network/api_response.dart';
 
@@ -36,6 +37,12 @@ class SignUpRespository {
       } else {
         return ApiResponse.error("Something went wrong!");
       }
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 400) {
+        return ApiResponse.error(
+            e.response?.data['message'] ?? "Something went wrong!");
+      }
+      return ApiResponse.error("Something went wrong!");
     } on Exception catch (e) {
       return ApiResponse.error(e.toString());
     }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:thikedaardotcom/common/carousel/carousel_options.dart';
+import 'package:get/get.dart';
+import 'package:thikedaardotcom/screens/view_your_dream_house/view_your_dream_house.dart';
 
-import '../../common/carousel/carousel_slider.dart';
 import '../../common/carousel/carousel_with_dot_indicator.dart';
+import '../design_your_house_screen/design_your_dream_house_screen.dart';
 import '../my_projects_screen/widgets/app_button.dart';
+import '../nav_sceen.dart/constants/constants.dart';
 
 class DesignYourHomeScreen extends StatelessWidget {
   const DesignYourHomeScreen({super.key});
@@ -81,7 +83,10 @@ class DesignYourHomeScreen extends StatelessWidget {
               AppButton(
                 key: const ValueKey("2D LAYOUT"),
                 text: "2D LAYOUT",
-                onTap: () => {},
+                onTap: () => {
+                  Get.to(const DesignYourDreamHouseScreen(),
+                      id: homeNestedKeyId),
+                },
               ),
               const SizedBox(
                 height: 32,
@@ -97,7 +102,9 @@ class DesignYourHomeScreen extends StatelessWidget {
               AppButton(
                 key: const ValueKey("VIRTUAL WALKTHROUGH"),
                 text: "VIRTUAL WALKTHROUGH",
-                onTap: () => {},
+                onTap: () => {
+                  Get.to(const ViewYourDreamHouse(), id: homeNestedKeyId),
+                },
               ),
             ],
           ),
