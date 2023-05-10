@@ -24,7 +24,7 @@ class SignUpRespository {
           "username": userName,
           "password": password,
           "email": email,
-          "roles": ["architect"]
+          "roles": ["user"]
         },
       );
       if (response.statusCode == 200) {

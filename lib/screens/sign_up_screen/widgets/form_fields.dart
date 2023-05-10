@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class FormFields extends StatelessWidget {
-  const FormFields({super.key, required this.label, required this.hintText});
+  const FormFields(
+      {super.key,
+      required this.label,
+      required this.hintText,
+      required this.controller,
+      required this.validator});
   final String label;
   final String hintText;
+  final TextEditingController controller;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +30,22 @@ class FormFields extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width * 0.90,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border:
-                    Border.all(color: Colors.black, style: BorderStyle.solid)),
-            child: TextField(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: validator,
+              controller: controller,
               decoration: InputDecoration(
-                  //errorText: emailErr,
-                  hintText: hintText,
-                  contentPadding: const EdgeInsets.all(15),
-                  border: InputBorder.none),
+                //errorText: emailErr,
+                hintText: hintText,
+                contentPadding: const EdgeInsets.all(15),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+              ),
               onChanged: (value) {
                 // Do something
               },

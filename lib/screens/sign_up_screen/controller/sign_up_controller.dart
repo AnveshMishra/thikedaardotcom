@@ -9,11 +9,16 @@ class SignUpController extends GetxController {
       ApiResponse<Map<String, dynamic>>.none();
 
   Future<void> signUp(
-      {required String userName, required String password}) async {
+      {required String userName,
+      required String password,
+      required String email}) async {
     apiResponse = ApiResponse<Map<String, dynamic>>.loading();
     update();
-    apiResponse = await SignUpRespository()
-        .registerUser(userName: userName, password: password, email: '');
+    apiResponse = await SignUpRespository().registerUser(
+      userName: userName,
+      password: password,
+      email: email,
+    );
     if (apiResponse.status == ApiResponseStatus.success) {
       Get.off(() => const LogInPage());
     } else if (apiResponse.status == ApiResponseStatus.error) {
