@@ -20,6 +20,16 @@ class SignUpController extends GetxController {
       email: email,
     );
     if (apiResponse.status == ApiResponseStatus.success) {
+      Get.snackbar(
+        "Registration Success",
+        apiResponse.data?['message'] ?? 'Registration is successfully done.',
+        backgroundColor: Colors.green,
+        snackPosition: SnackPosition.BOTTOM,
+        icon: const Icon(
+          Icons.done,
+          color: Colors.white,
+        ),
+      );
       Get.off(() => const LogInPage());
     } else if (apiResponse.status == ApiResponseStatus.error) {
       Get.snackbar(

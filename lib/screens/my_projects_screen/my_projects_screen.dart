@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:thikedaardotcom/screens/my_projects_screen/routes/routes.dart';
 
 import '../../common/carousel/carousel_with_dot_indicator.dart';
+import '../nav_sceen.dart/constants/constants.dart';
 import 'widgets/app_button.dart';
 
 class MyProjectsScreen extends StatelessWidget {
@@ -68,7 +69,7 @@ class MyProjectsScreen extends StatelessWidget {
                 key: const ValueKey("DESIGN YOUR HOME"),
                 text: "DESIGN YOUR HOME",
                 onTap: () => {
-                  Get.toNamed(designYourHome, id: 2),
+                  Get.toNamed(designYourHome, id: homeNestedKeyId),
                 },
               ),
               const SizedBox(
@@ -77,18 +78,18 @@ class MyProjectsScreen extends StatelessWidget {
               AppButton(
                 key: const ValueKey("BUILD YOUR HOME"),
                 text: "BUILD YOUR HOME",
-                onTap: () => Get.toNamed(buildYourHome, id: 2),
+                onTap: () => Get.toNamed(buildYourHome, id: homeNestedKeyId),
               ),
               const SizedBox(
                 height: 32,
               ),
-              AppButton(
-                key: const ValueKey("MAINTAIN YOUR HOME"),
-                text: "MAINTAIN YOUR HOME",
-                onTap: () => {
-                  Get.toNamed(maintainYourHome, id: 2),
-                },
-              ),
+              // AppButton(
+              //   key: const ValueKey("MAINTAIN YOUR HOME"),
+              //   text: "MAINTAIN YOUR HOME",
+              //   onTap: () => {
+              //     Get.toNamed(maintainYourHome, id: homeNestedKeyId),
+              //   },
+              // ),
             ],
           ),
         ),

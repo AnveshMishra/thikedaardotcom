@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:thikedaardotcom/screens/design_your_house_screen/widgets/option_bottom_sheet.dart';
 
 import '../../config/size/size_config.dart';
 import '../../config/styles/app_colors.dart';
@@ -207,9 +208,27 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                 Padding(
                                     padding: const EdgeInsets.only(top: 20),
                                     child: TextField(
+                                      readOnly: true,
+                                      onTap: () => showOptionBottomSheet(
+                                          context,
+                                          onTap: (String value) {},
+                                          title: "Require basement?"),
                                       cursorColor: Colors.grey[600],
                                       style: TextStyle(color: Colors.grey[600]),
                                       decoration: InputDecoration(
+                                        suffixIcon: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            margin: const EdgeInsets.all(8),
+                                            decoration: const BoxDecoration(
+                                              color: Colors.black,
+                                            ),
+                                            child: Icon(
+                                                Icons.arrow_drop_down_outlined,
+                                                color:
+                                                    AppColors.appAccentAmber),
+                                          ),
+                                        ),
                                         filled: true,
                                         hintText: "Require basement?",
                                         hintStyle: Theme.of(context)
@@ -227,9 +246,28 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                 Padding(
                                     padding: const EdgeInsets.only(top: 20),
                                     child: TextField(
+                                      onTap: () => showOptionBottomSheet(
+                                        context,
+                                        onTap: (String value) {},
+                                        title: "Require stilt?",
+                                      ),
+                                      readOnly: true,
                                       cursorColor: Colors.grey[600],
                                       style: TextStyle(color: Colors.grey[600]),
                                       decoration: InputDecoration(
+                                        suffixIcon: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            margin: const EdgeInsets.all(8),
+                                            decoration: const BoxDecoration(
+                                              color: Colors.black,
+                                            ),
+                                            child: Icon(
+                                                Icons.arrow_drop_down_outlined,
+                                                color:
+                                                    AppColors.appAccentAmber),
+                                          ),
+                                        ),
                                         filled: true,
                                         hintText: "Require stilt?",
                                         hintStyle: Theme.of(context)
