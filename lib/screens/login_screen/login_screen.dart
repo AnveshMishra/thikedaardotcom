@@ -344,7 +344,7 @@ class _LogInPageState extends State<LogInPage> {
 
   userLogin() async {
     if (formGlobalKey.currentState?.validate() ?? false) {
-      await _controller.login(userName: '', password: '');
+      await _controller.login(userName: email ?? '', password: password ?? '');
       Get.snackbar(
         "Login Success",
         "You have successfully logged in.",

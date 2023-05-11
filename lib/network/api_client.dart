@@ -6,7 +6,7 @@ class ApiClient {
 
   static final ApiClient _singleton = ApiClient._internal();
   factory ApiClient() {
-    _singleton._dio.interceptors.add(PrettyDioLogger());
+    _singleton._dio.interceptors.add(PrettyDioLogger(requestBody: true));
     return _singleton;
   }
   ApiClient._internal();
