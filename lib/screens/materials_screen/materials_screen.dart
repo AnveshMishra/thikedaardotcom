@@ -1,12 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:thikedaardotcom/config/styles/app_colors.dart';
+import 'package:thikedaardotcom/network/api_response.dart';
 import 'package:thikedaardotcom/screens/materials_screen/widgets/banner.dart';
 import 'package:thikedaardotcom/screens/materials_screen/widgets/filter_button.dart';
 
 import '../../config/size/size_config.dart';
 import '../../config/styles/app_styles.dart';
+import 'controller/material_controller.dart';
 import 'widgets/header_widget.dart';
 import 'widgets/icons_button.dart';
 import 'widgets/product_widget.dart';
@@ -115,30 +119,48 @@ class MaterialsScreen extends StatelessWidget {
                     SizedBox(
                       height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
                     ),
-                    SizedBox(
-                      width: 100.w,
-                      height: 12.h,
-                      child: ListView(
-                        clipBehavior: Clip.none,
-                        scrollDirection: Axis.horizontal,
-                        children: const [
-                          IconsButton(
-                            text: "Cement",
-                          ),
-                          IconsButton(
-                            text: "Steel",
-                          ),
-                          IconsButton(
-                            text: "Brick",
-                          ),
-                          IconsButton(
-                            text: "Wiring",
-                          ),
-                          IconsButton(
-                            text: "Paint",
-                          ),
-                        ],
-                      ),
+                    GetBuilder<MaterialController>(
+                      builder: (controller) => controller.apiResponse.status ==
+                              ApiResponseStatus.success
+                          ? SizedBox(
+                              width: 100.w,
+                              height: 12.h,
+                              child: ListView.builder(
+                                clipBehavior: Clip.none,
+                                scrollDirection: Axis.horizontal,
+                                itemCount:
+                                    controller.apiResponse.data?.data?.length,
+                                itemBuilder: (context, index) => (controller
+                                            .apiResponse
+                                            .data
+                                            ?.data?[index]
+                                            .active ??
+                                        false)
+                                    ? IconsButton(
+                                        text: controller.apiResponse.data
+                                                ?.data?[index].name ??
+                                            '')
+                                    : const SizedBox(),
+                                // children: const [
+                                //   IconsButton(
+                                //     text: "Cement",
+                                //   ),
+                                //   IconsButton(
+                                //     text: "Steel",
+                                //   ),
+                                //   IconsButton(
+                                //     text: "Brick",
+                                //   ),
+                                //   IconsButton(
+                                //     text: "Wiring",
+                                //   ),
+                                //   IconsButton(
+                                //     text: "Paint",
+                                //   ),
+                                // ],
+                              ),
+                            )
+                          : const CupertinoActivityIndicator(),
                     ),
                     SizedBox(
                       height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
