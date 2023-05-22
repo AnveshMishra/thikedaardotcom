@@ -4,8 +4,9 @@ import '../../../config/size/size_config.dart';
 
 class ProductWidget extends StatelessWidget {
   final String text;
+  final String price;
 
-  const ProductWidget({super.key, required this.text});
+  const ProductWidget({super.key, required this.text, required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class ProductWidget extends StatelessWidget {
                   )),
         ),
         Text(
-          r"$12",
+          r"$" + price,
           style: Theme.of(context).primaryTextTheme.headlineSmall,
         ),
         SizedBox(

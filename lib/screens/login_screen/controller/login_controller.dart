@@ -17,6 +17,16 @@ class LoginController extends GetxController {
         await LoginRespository().login(userName: userName, password: password);
     if (apiResponse.status == ApiResponseStatus.success) {
       Get.off(() => const NavScreen());
+      Get.snackbar(
+        "Login Success",
+        "You have successfully logged in.",
+        backgroundColor: Colors.green,
+        snackPosition: SnackPosition.BOTTOM,
+        icon: const Icon(
+          Icons.done,
+          color: Colors.white,
+        ),
+      );
     } else {
       Get.snackbar(
         "Login Failed",

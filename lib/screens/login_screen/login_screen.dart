@@ -345,16 +345,6 @@ class _LogInPageState extends State<LogInPage> {
   userLogin() async {
     if (formGlobalKey.currentState?.validate() ?? false) {
       await _controller.login(userName: email ?? '', password: password ?? '');
-      Get.snackbar(
-        "Login Success",
-        "You have successfully logged in.",
-        backgroundColor: Colors.green,
-        snackPosition: SnackPosition.BOTTOM,
-        icon: const Icon(
-          Icons.done,
-          color: Colors.white,
-        ),
-      );
     }
   }
 }

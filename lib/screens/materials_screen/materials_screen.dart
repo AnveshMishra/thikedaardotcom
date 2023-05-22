@@ -72,142 +72,153 @@ class MaterialsScreen extends StatelessWidget {
         ),
       ),
       // backgroundColor: ,
-      body: CustomScrollView(slivers: [
-        SliverToBoxAdapter(
-          child: Container(
-            padding: EdgeInsets.only(top: 2.h),
-            decoration: BoxDecoration(
-                color: AppColors.bottomNavigationBarColor,
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(24),
-                    bottomRight: Radius.circular(24))),
-            child: Column(
-              children: [
-                Padding(
-                  padding: horizontalPadding,
-                  child: const PromoBanner(),
+      body: GetBuilder<MaterialController>(
+        builder: (controller) {
+          if (controller.apiResponse.status != ApiResponseStatus.success ||
+              controller.productApiResponse.status !=
+                  ApiResponseStatus.success) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          } else {
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 2.h),
+                    decoration: BoxDecoration(
+                        color: AppColors.bottomNavigationBarColor,
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(24),
+                            bottomRight: Radius.circular(24))),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: horizontalPadding,
+                          child: const PromoBanner(),
+                        ),
+                        SizedBox(
+                          height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                SizedBox(
-                  height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
-                ),
-              ],
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: double.maxFinite,
-                padding: horizontalPadding,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
-                    )),
-                child: Column(
-                  // mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
-                    ),
-                    const HeaderWidget(
-                      text: 'Categories',
-                    ),
-                    SizedBox(
-                      height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
-                    ),
-                    GetBuilder<MaterialController>(
-                      builder: (controller) => controller.apiResponse.status ==
-                              ApiResponseStatus.success
-                          ? SizedBox(
+                SliverToBoxAdapter(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: double.maxFinite,
+                        padding: horizontalPadding,
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16),
+                            )),
+                        child: Column(
+                          // mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
+                            ),
+                            const HeaderWidget(
+                              text: 'Categories',
+                            ),
+                            SizedBox(
+                              height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
+                            ),
+                            GetBuilder<MaterialController>(
+                              builder: (controller) =>
+                                  controller.apiResponse.status ==
+                                          ApiResponseStatus.success
+                                      ? SizedBox(
+                                          width: 100.w,
+                                          height: 12.h,
+                                          child: ListView.builder(
+                                            clipBehavior: Clip.none,
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: controller
+                                                .apiResponse.data?.data?.length,
+                                            itemBuilder: (context, index) =>
+                                                (controller
+                                                            .apiResponse
+                                                            .data
+                                                            ?.data?[index]
+                                                            .active ??
+                                                        false)
+                                                    ? IconsButton(
+                                                        text: controller
+                                                                .apiResponse
+                                                                .data
+                                                                ?.data?[index]
+                                                                .name ??
+                                                            '')
+                                                    : const SizedBox(),
+                                          ),
+                                        )
+                                      : const CupertinoActivityIndicator(),
+                            ),
+                            SizedBox(
+                              height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
+                            ),
+                            const HeaderWidget(
+                              text: 'Featured products',
+                            ),
+                            SizedBox(
+                              height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
+                            ),
+                            SizedBox(
                               width: 100.w,
-                              height: 12.h,
-                              child: ListView.builder(
+                              height: 5.0.h,
+                              child: ListView(
                                 clipBehavior: Clip.none,
                                 scrollDirection: Axis.horizontal,
-                                itemCount:
-                                    controller.apiResponse.data?.data?.length,
-                                itemBuilder: (context, index) => (controller
-                                            .apiResponse
-                                            .data
-                                            ?.data?[index]
-                                            .active ??
-                                        false)
-                                    ? IconsButton(
-                                        text: controller.apiResponse.data
-                                                ?.data?[index].name ??
-                                            '')
-                                    : const SizedBox(),
-                                // children: const [
-                                //   IconsButton(
-                                //     text: "Cement",
-                                //   ),
-                                //   IconsButton(
-                                //     text: "Steel",
-                                //   ),
-                                //   IconsButton(
-                                //     text: "Brick",
-                                //   ),
-                                //   IconsButton(
-                                //     text: "Wiring",
-                                //   ),
-                                //   IconsButton(
-                                //     text: "Paint",
-                                //   ),
-                                // ],
+                                children: const [
+                                  FilterButton(isSelected: true, text: 'All'),
+                                  FilterButton(
+                                      isSelected: false, text: 'newest'),
+                                  FilterButton(
+                                      isSelected: false, text: 'popular'),
+                                  FilterButton(
+                                      isSelected: false, text: 'trending'),
+                                ],
                               ),
-                            )
-                          : const CupertinoActivityIndicator(),
-                    ),
-                    SizedBox(
-                      height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
-                    ),
-                    const HeaderWidget(
-                      text: 'Featured products',
-                    ),
-                    SizedBox(
-                      height: (SizeConfig.blackSizeVertical ?? 1) * 1.4,
-                    ),
-                    SizedBox(
-                      width: 100.w,
-                      height: 5.0.h,
-                      child: ListView(
-                        clipBehavior: Clip.none,
-                        scrollDirection: Axis.horizontal,
-                        children: const [
-                          FilterButton(isSelected: true, text: 'All'),
-                          FilterButton(isSelected: false, text: 'newest'),
-                          FilterButton(isSelected: false, text: 'popular'),
-                          FilterButton(isSelected: false, text: 'trending'),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
-                    ),
-                  ],
+                            ),
+                            SizedBox(
+                              height: (SizeConfig.blackSizeVertical ?? 1) * 2.8,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              )
-            ],
-          ),
-        ),
-        SliverPadding(
-          padding: horizontalPadding,
-          sliver: SliverAlignedGrid.count(
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 4,
-              itemCount: 200,
-              itemBuilder: (_, index) {
-                return ProductWidget(
-                  text: 'Product name $index',
-                );
-              },
-              crossAxisCount: 4),
-        ),
-      ]),
+                SliverPadding(
+                  padding: horizontalPadding,
+                  sliver: SliverAlignedGrid.count(
+                      mainAxisSpacing: 4,
+                      crossAxisSpacing: 4,
+                      itemCount:
+                          controller.productApiResponse.data?.data?.length ?? 0,
+                      itemBuilder: (_, index) {
+                        return ProductWidget(
+                          text: controller
+                                  .productApiResponse.data?.data?[index].name ??
+                              '',
+                          price: controller.productApiResponse.data
+                                  ?.data?[index].price ??
+                              '',
+                        );
+                      },
+                      crossAxisCount: 4),
+                ),
+              ],
+            );
+          }
+        },
+      ),
     );
   }
 }
