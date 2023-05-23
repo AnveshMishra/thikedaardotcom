@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:thikedaardotcom/screens/design_your_house_screen/design_your_dream_house_screen.dart';
 import 'package:thikedaardotcom/screens/my_projects_screen/my_projects_screen.dart';
 import 'package:thikedaardotcom/screens/nav_sceen.dart/constants/constants.dart';
 import 'package:thikedaardotcom/screens/select_your_house_design/select_your_house_design_screen.dart';
-import 'package:thikedaardotcom/screens/view_your_dream_house/view_your_dream_house.dart';
-
-import '../../home_screen/home_screen.dart';
 
 class NavScreenController extends GetxController {
   var tabIndex = 0.obs;

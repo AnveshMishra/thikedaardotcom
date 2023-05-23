@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:thikedaardotcom/screens/design_your_house_screen/controller/design_your_house_controller.dart';
 import 'package:thikedaardotcom/screens/login_screen/controller/login_controller.dart';
 import 'package:thikedaardotcom/screens/materials_screen/controller/material_controller.dart';
 import 'package:thikedaardotcom/screens/sign_up_screen/controller/sign_up_controller.dart';
@@ -13,5 +14,7 @@ class GlobalBindings extends Bindings {
     Get.put<SelectYourHouseDesignController>(SelectYourHouseDesignController(),
         permanent: true);
     Get.put<MaterialController>(MaterialController(), permanent: true);
+    Get.put<DesignYourHouseController>(DesignYourHouseController(),
+        permanent: true);
   }
 }

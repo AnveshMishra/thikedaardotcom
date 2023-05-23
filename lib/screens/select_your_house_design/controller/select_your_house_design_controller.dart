@@ -12,7 +12,7 @@ class SelectYourHouseDesignController extends GetxController {
   Future<void> getDesignData() async {
     apiResponse = ApiResponse<GetDesignDataResponseModel>.loading();
     update();
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 2));
     apiResponse = await SelectYourHouseDesignRespository().getDesignData();
     if (apiResponse.status == ApiResponseStatus.success) {
       // Get.off(() => const NavScreen());

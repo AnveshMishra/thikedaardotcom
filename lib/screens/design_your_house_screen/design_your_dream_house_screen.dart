@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:thikedaardotcom/network/api_response.dart';
 import 'package:thikedaardotcom/screens/design_your_house_screen/widgets/option_bottom_sheet.dart';
 
 import '../../config/size/size_config.dart';
 import '../../config/styles/app_colors.dart';
 import '../../config/styles/app_styles.dart';
+import '../nav_sceen.dart/controller/nav_screen_controller.dart';
+import '../select_your_house_design/controller/select_your_house_design_controller.dart';
+import 'controller/design_your_house_controller.dart';
 
 class DesignYourDreamHouseScreen extends StatelessWidget {
   const DesignYourDreamHouseScreen({super.key});
@@ -12,6 +17,7 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    Get.find<DesignYourHouseController>().getLocation();
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 250, 250, 250),
         body: SingleChildScrollView(
@@ -120,140 +126,167 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 20, right: 20, top: 10),
-                          child: Form(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15),
-                                  child: TextField(
-                                    cursorColor: Colors.grey[600],
-                                    style: TextStyle(color: Colors.grey[600]),
-                                    decoration: InputDecoration(
-                                      filled: true,
-                                      hintText: 'Enter your city',
-                                      hintStyle: Theme.of(context)
-                                          .primaryTextTheme
-                                          .bodyMedium
-                                          ?.copyWith(color: Colors.black54),
-                                      fillColor:
-                                          AppColors.colorFromHex('#F1AD0A'),
-                                      border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
+                          child: GetBuilder<DesignYourHouseController>(
+                            builder: (controller) => Form(
+                              key: controller.formGlobalKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 15),
+                                    child: TextFormField(
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      validator: _validator,
+                                      controller: controller.cityController,
+                                      cursorColor: Colors.grey[600],
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        hintText: 'Enter your city',
+                                        hintStyle: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: Colors.black54),
+                                        fillColor:
+                                            AppColors.colorFromHex('#F1AD0A'),
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: TextField(
-                                      cursorColor: Colors.grey[600],
-                                      style: TextStyle(color: Colors.grey[600]),
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        hintText: "Enter Plot length",
-                                        hintStyle: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyMedium
-                                            ?.copyWith(color: Colors.black54),
-                                        fillColor:
-                                            AppColors.colorFromHex('#F1AD0A'),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                      ),
-                                    )),
-                                Padding(
-                                    padding: const EdgeInsets.only(top: 20),
-                                    child: TextField(
-                                      cursorColor: Colors.grey[600],
-                                      style: TextStyle(color: Colors.grey[600]),
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        hintText: "Enter Plot width",
-                                        hintStyle: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyMedium
-                                            ?.copyWith(color: Colors.black54),
-                                        fillColor:
-                                            AppColors.colorFromHex('#F1AD0A'),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                      ),
-                                    )),
-                                Padding(
-                                    padding: const EdgeInsets.only(top: 20),
-                                    child: TextField(
-                                      cursorColor: Colors.grey[600],
-                                      style: TextStyle(color: Colors.grey[600]),
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        hintText: "Enter Number of floors",
-                                        hintStyle: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyMedium
-                                            ?.copyWith(color: Colors.black54),
-                                        fillColor:
-                                            AppColors.colorFromHex('#F1AD0A'),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                      ),
-                                    )),
-                                Padding(
-                                    padding: const EdgeInsets.only(top: 20),
-                                    child: TextField(
-                                      readOnly: true,
-                                      onTap: () => showOptionBottomSheet(
-                                          context,
-                                          onTap: (String value) {},
-                                          title: "Require basement?"),
-                                      cursorColor: Colors.grey[600],
-                                      style: TextStyle(color: Colors.grey[600]),
-                                      decoration: InputDecoration(
-                                        suffixIcon: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            margin: const EdgeInsets.all(8),
-                                            decoration: const BoxDecoration(
-                                              color: Colors.black,
-                                            ),
-                                            child: Icon(
-                                                Icons.arrow_drop_down_outlined,
-                                                color:
-                                                    AppColors.appAccentAmber),
-                                          ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: TextFormField(
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        keyboardType: TextInputType.number,
+                                        validator: _validator,
+                                        cursorColor: Colors.grey[600],
+                                        controller: controller.plotLenth,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          hintText: "Enter Plot length",
+                                          hintStyle: Theme.of(context)
+                                              .primaryTextTheme
+                                              .bodyMedium
+                                              ?.copyWith(color: Colors.black54),
+                                          fillColor:
+                                              AppColors.colorFromHex('#F1AD0A'),
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                              borderRadius:
+                                                  BorderRadius.circular(50)),
                                         ),
-                                        filled: true,
-                                        hintText: "Require basement?",
-                                        hintStyle: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyMedium
-                                            ?.copyWith(color: Colors.black54),
-                                        fillColor:
-                                            AppColors.colorFromHex('#F1AD0A'),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                      ),
-                                    )),
-                                Padding(
+                                      )),
+                                  Padding(
+                                      padding: const EdgeInsets.only(top: 20),
+                                      child: TextFormField(
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        keyboardType: TextInputType.number,
+                                        validator: _validator,
+                                        cursorColor: Colors.grey[600],
+                                        controller: controller.plotWidth,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          hintText: "Enter Plot width",
+                                          hintStyle: Theme.of(context)
+                                              .primaryTextTheme
+                                              .bodyMedium
+                                              ?.copyWith(color: Colors.black54),
+                                          fillColor:
+                                              AppColors.colorFromHex('#F1AD0A'),
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                              borderRadius:
+                                                  BorderRadius.circular(50)),
+                                        ),
+                                      )),
+                                  Padding(
+                                      padding: const EdgeInsets.only(top: 20),
+                                      child: TextFormField(
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        keyboardType: TextInputType.number,
+                                        validator: _validator,
+                                        cursorColor: Colors.grey[600],
+                                        controller: controller.numberOfFloors,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          hintText: "Enter Number of floors",
+                                          hintStyle: Theme.of(context)
+                                              .primaryTextTheme
+                                              .bodyMedium
+                                              ?.copyWith(color: Colors.black54),
+                                          fillColor:
+                                              AppColors.colorFromHex('#F1AD0A'),
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                              borderRadius:
+                                                  BorderRadius.circular(50)),
+                                        ),
+                                      )),
+                                  Padding(
+                                      padding: const EdgeInsets.only(top: 20),
+                                      child: TextFormField(
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        validator: _validator,
+                                        controller: controller.requiredBasement,
+                                        readOnly: true,
+                                        onTap: () => showOptionBottomSheet(
+                                            context, onTap: (String value) {
+                                          controller.requiredBasement.text =
+                                              value;
+                                        }, title: "Require basement?"),
+                                        cursorColor: Colors.grey[600],
+                                        decoration: InputDecoration(
+                                          suffixIcon: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              margin: const EdgeInsets.all(8),
+                                              decoration: const BoxDecoration(
+                                                color: Colors.black,
+                                              ),
+                                              child: Icon(
+                                                  Icons
+                                                      .arrow_drop_down_outlined,
+                                                  color:
+                                                      AppColors.appAccentAmber),
+                                            ),
+                                          ),
+                                          filled: true,
+                                          hintText: "Require basement?",
+                                          hintStyle: Theme.of(context)
+                                              .primaryTextTheme
+                                              .bodyMedium
+                                              ?.copyWith(color: Colors.black54),
+                                          fillColor:
+                                              AppColors.colorFromHex('#F1AD0A'),
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                              borderRadius:
+                                                  BorderRadius.circular(50)),
+                                        ),
+                                      )),
+                                  Padding(
                                     padding: const EdgeInsets.only(top: 20),
-                                    child: TextField(
+                                    child: TextFormField(
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      validator: _validator,
                                       onTap: () => showOptionBottomSheet(
                                         context,
-                                        onTap: (String value) {},
+                                        onTap: (String value) {
+                                          controller.requiredStilt.text = value;
+                                        },
                                         title: "Require stilt?",
                                       ),
                                       readOnly: true,
                                       cursorColor: Colors.grey[600],
-                                      style: TextStyle(color: Colors.grey[600]),
+                                      controller: controller.requiredStilt,
                                       decoration: InputDecoration(
                                         suffixIcon: Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -281,11 +314,13 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(50)),
                                       ),
-                                    )),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -306,14 +341,35 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                       ),
                                       backgroundColor: Colors.black,
                                     ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "VIEW NOW",
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .headlineLarge
-                                          ?.copyWith(color: Colors.white),
-                                    ),
+                                    onPressed: () async {
+                                      await Get.find<
+                                              DesignYourHouseController>()
+                                          .generateDesign();
+                                      Get.find<NavScreenController>()
+                                          .changeTabIndex(0);
+                                      Get.find<
+                                              SelectYourHouseDesignController>()
+                                          .getDesignData();
+                                      Get.find<NavScreenController>()
+                                          .changeTabIndex(3);
+                                    },
+                                    child:
+                                        GetBuilder<DesignYourHouseController>(
+                                            builder: (controller) {
+                                      if (controller.apiResponse.status !=
+                                          ApiResponseStatus.loading) {
+                                        return Text(
+                                          "VIEW NOW",
+                                          style: Theme.of(context)
+                                              .primaryTextTheme
+                                              .headlineLarge
+                                              ?.copyWith(color: Colors.white),
+                                        );
+                                      }
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }),
                                   ),
                                 )
                               ],
@@ -324,5 +380,12 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  String? _validator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'This field is required';
+    }
+    return null;
   }
 }
