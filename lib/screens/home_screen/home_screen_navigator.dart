@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thikedaardotcom/screens/nav_sceen.dart/controller/nav_screen_controller.dart';
+import 'package:thikedaardotcom/screens/profile/profile.dart';
 import 'package:thikedaardotcom/screens/view_your_dream_house/view_your_dream_house.dart';
 
 import '../build_your_home/build_your_home.dart';
@@ -31,6 +32,11 @@ class HomeScreenNavigator extends StatelessWidget {
             return GetPageRoute(
               settings: RouteSettings(name: settings.name),
               page: () => const DesignYourHomeScreen(),
+            );
+          case profile:
+            return GetPageRoute(
+              settings: RouteSettings(name: settings.name),
+              page: () => ProfileUI(),
             );
           case maintainYourHome:
             return GetPageRoute(

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:thikedaardotcom/network/api_response.dart';
 import 'package:thikedaardotcom/screens/design_your_house_screen/widgets/option_bottom_sheet.dart';
+import 'package:thikedaardotcom/screens/nav_sceen.dart/constants/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/size/size_config.dart';
 import '../../config/styles/app_colors.dart';
@@ -70,8 +72,9 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                 backgroundColor:
                                     AppColors.colorFromHex('#F1AD0A'),
                               ),
-                              onPressed: () {
+                              onPressed: () async {
                                 // Navigator.pushNamed(context, '/home');
+                                await launchUrl(Uri.parse("tel:$mobileNo"));
                               },
                               child: Text(
                                 "Call Us",

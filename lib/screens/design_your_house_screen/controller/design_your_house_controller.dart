@@ -12,6 +12,7 @@ class DesignYourHouseController extends GetxController {
   Position? position;
   TextEditingController cityController = TextEditingController();
   TextEditingController plotLenth = TextEditingController();
+
   TextEditingController plotWidth = TextEditingController();
   TextEditingController numberOfFloors = TextEditingController();
   TextEditingController requiredBasement = TextEditingController();

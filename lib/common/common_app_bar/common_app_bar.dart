@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/styles/app_colors.dart';
+import '../../screens/nav_sceen.dart/constants/constants.dart';
 
 class CommonAppBar extends StatelessWidget {
   final String fisrtHeader;
@@ -62,7 +64,9 @@ class CommonAppBar extends StatelessWidget {
                 height: 1.8.h,
               ),
               FilledButton.icon(
-                onPressed: () {},
+                onPressed: () async {
+                  await launchUrl(Uri.parse("tel:$mobileNo"));
+                },
                 icon: const Icon(Icons.phone),
                 label: Padding(
                   padding: EdgeInsets.symmetric(vertical: 1.4.h),

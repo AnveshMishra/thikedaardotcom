@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:thikedaardotcom/config/styles/app_colors.dart';
 import 'package:thikedaardotcom/screens/my_project_details/my_project_details.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../nav_sceen.dart/constants/constants.dart';
 import 'widgets/floor_plan_view.dart';
 
 class ViewYourDreamHouse extends StatelessWidget {
@@ -63,11 +65,12 @@ class ViewYourDreamHouse extends StatelessWidget {
                         height: 1.8.h,
                       ),
                       FilledButton.icon(
-                        onPressed: () {
-                          Get.to(
-                            const MyProjectDetails(),
-                            id: 0,
-                          );
+                        onPressed: () async {
+                          await launchUrl(Uri.parse("tel:$mobileNo"));
+                          // Get.to(
+                          //   const MyProjectDetails(),
+                          //   id: 0,
+                          // );
                         },
                         icon: const Icon(Icons.phone),
                         label: Padding(

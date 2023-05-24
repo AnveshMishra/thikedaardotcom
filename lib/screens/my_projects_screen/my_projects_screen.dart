@@ -21,7 +21,9 @@ class MyProjectsScreen extends StatelessWidget {
                 children: [
                   const Spacer(),
                   IconButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+                            Get.toNamed(profile, id: 0),
+                          },
                       icon: const Icon(
                         Icons.person,
                         size: 36,
