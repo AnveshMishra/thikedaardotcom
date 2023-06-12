@@ -154,6 +154,12 @@ class MaterialsScreen extends StatelessWidget {
                                                                 .data
                                                                 ?.data?[index]
                                                                 .name ??
+                                                            '',
+                                                        image: controller
+                                                                .apiResponse
+                                                                .data
+                                                                ?.data?[index]
+                                                                .image ??
                                                             '')
                                                     : const SizedBox(),
                                           ),
@@ -210,6 +216,8 @@ class MaterialsScreen extends StatelessWidget {
                           price: controller.productApiResponse.data
                                   ?.data?[index].price ??
                               '',
+                          image: controller
+                              .productApiResponse.data?.data?[index].image,
                         );
                       },
                       crossAxisCount: 4),

@@ -5,8 +5,9 @@ import '../../../config/size/size_config.dart';
 class ProductWidget extends StatelessWidget {
   final String text;
   final String price;
+  final String image;
 
-  const ProductWidget({super.key, required this.text, required this.price});
+  const ProductWidget({super.key, required this.text, required this.price, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +15,12 @@ class ProductWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          color: Colors.black,
+          // color: Colors.black,
           height: (SizeConfig.blackSizeVertical ?? 1) * 10,
+          decoration: BoxDecoration(
+              image: DecorationImage(image: NetworkImage(image),
+                  fit: BoxFit.fill)
+          ),
         ),
         SizedBox(
           height: (SizeConfig.blackSizeVertical ?? 1) * 2,

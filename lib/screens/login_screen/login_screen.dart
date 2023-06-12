@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thikedaardotcom/network/api_response.dart';
@@ -29,6 +30,10 @@ class _LogInPageState extends State<LogInPage> {
   @override
   void initState() {
     super.initState();
+    if (kDebugMode) {
+      emailCtrl = TextEditingController(text: '');
+      passCtrl = TextEditingController(text: '');
+    }
     _controller = Get.find<LoginController>();
   }
 

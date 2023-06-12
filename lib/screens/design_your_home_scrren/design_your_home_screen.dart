@@ -52,6 +52,8 @@ class DesignYourHomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.black12,
                       borderRadius: BorderRadius.circular(16),
+                        image: DecorationImage(image: NetworkImage("https://images.pexels.com/photos/2219035/pexels-photo-2219035.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                            fit: BoxFit.fill)
                     ),
                   ),
                   Container(
@@ -61,6 +63,8 @@ class DesignYourHomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(16),
+                        image: DecorationImage(image: NetworkImage("https://images.pexels.com/photos/962889/pexels-photo-962889.jpeg?auto=compress&cs=tinysrgb&w=600"),
+                            fit: BoxFit.fill)
                     ),
                   ),
                   Container(
@@ -70,6 +74,8 @@ class DesignYourHomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(16),
+                        image: DecorationImage(image: NetworkImage("https://images.pexels.com/photos/2590716/pexels-photo-2590716.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=252&fit=crop&h=408"),
+                            fit: BoxFit.fill)
                     ),
                   ),
                 ],
@@ -84,8 +90,7 @@ class DesignYourHomeScreen extends StatelessWidget {
                 key: const ValueKey("2D LAYOUT"),
                 text: "2D LAYOUT",
                 onTap: () => {
-                  Get.to(const DesignYourDreamHouseScreen(),
-                      id: homeNestedKeyId),
+                  Get.to(DesignYourDreamHouseScreen(), id: homeNestedKeyId),
                 },
               ),
               const SizedBox(

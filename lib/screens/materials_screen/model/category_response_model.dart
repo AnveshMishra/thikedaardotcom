@@ -53,6 +53,7 @@ class CategoryData {
   final dynamic isDeleted;
   final int? position;
   final bool? approvalStatus;
+  final String? image;
 
   CategoryData({
     this.id,
@@ -62,6 +63,7 @@ class CategoryData {
     this.isDeleted,
     this.position,
     this.approvalStatus,
+    this.image,
   });
 
   CategoryData copyWith({
@@ -72,6 +74,7 @@ class CategoryData {
     dynamic isDeleted,
     int? position,
     bool? approvalStatus,
+    String? image,
   }) =>
       CategoryData(
         id: id ?? this.id,
@@ -81,6 +84,7 @@ class CategoryData {
         isDeleted: isDeleted ?? this.isDeleted,
         position: position ?? this.position,
         approvalStatus: approvalStatus ?? this.approvalStatus,
+        image: image ?? this.image,
       );
 
   factory CategoryData.fromJson(Map<String, dynamic> json) => CategoryData(
@@ -91,6 +95,7 @@ class CategoryData {
         isDeleted: json["isDeleted"],
         position: json["position"],
         approvalStatus: json["approvalStatus"],
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -101,5 +106,6 @@ class CategoryData {
         "isDeleted": isDeleted,
         "position": position,
         "approvalStatus": approvalStatus,
+        "image": image
       };
 }

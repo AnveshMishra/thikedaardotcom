@@ -4,3 +4,4 @@ const int myProjectNestedKeyId = 2;
 const int myDesignNestedKeyId = 3;
 
 const String mobileNo = '8447554098';
+Map<String, dynamic> gUserInfo = {};

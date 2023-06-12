@@ -14,7 +14,9 @@ import '../select_your_house_design/controller/select_your_house_design_controll
 import 'controller/design_your_house_controller.dart';
 
 class DesignYourDreamHouseScreen extends StatelessWidget {
-  const DesignYourDreamHouseScreen({super.key});
+  DesignYourDreamHouseScreen({super.key}) {
+    Get.put(DesignYourHouseController());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,84 +26,83 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 250, 250, 250),
         body: SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 height: SizeConfig.blackSizeVertical! * 36,
-                width: double.infinity,
-                child: Stack(children: [
-                  Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: AppColors.colorFromHex('#384247'),
-                  ),
-                  Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 50),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Design Your \nDream House',
-                            style: TextStyle(
-                                fontSize: 30,
-                                fontFamily: 'Montserrat',
-                                color: AppColors.colorFromHex('#F1AD0A'),
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 1.h,
-                          ),
-                          const Text('Get Free Consultation today',
+                child: Stack(
+                  children: [
+                    Container(color: AppColors.colorFromHex('#384247')),
+                    Padding(
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 20, top: 50),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Design Your \nDream House',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 30,
                                   fontFamily: 'Montserrat',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal)),
-                          SizedBox(
-                            height: 4.h,
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            height: MediaQuery.of(context).size.height * 0.07,
-                            child: TextButton(
-                              key: const ValueKey("btnLogin"),
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                  color: AppColors.colorFromHex('#F1AD0A'),
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            const Text('Get Free Consultation today',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.normal)),
+                            SizedBox(
+                              height: 4.h,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.07,
+                              child: TextButton(
+                                key: const ValueKey("btnLogin"),
+                                style: TextButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  backgroundColor:
+                                      AppColors.colorFromHex('#F1AD0A'),
                                 ),
-                                backgroundColor:
-                                    AppColors.colorFromHex('#F1AD0A'),
-                              ),
-                              onPressed: () async {
-                                // Navigator.pushNamed(context, '/home');
-                                await launchUrl(Uri.parse("tel:$mobileNo"));
-                              },
-                              child: Text(
-                                "Call Us",
-                                style: mOswaldBold.copyWith(
-                                  fontSize: 18,
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.white,
+                                onPressed: () async {
+                                  // Navigator.pushNamed(context, '/home');
+                                  await launchUrl(Uri.parse("tel:$mobileNo"));
+                                },
+                                child: Text(
+                                  "Call Us",
+                                  style: mOswaldBold.copyWith(
+                                    fontSize: 18,
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      )),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.03,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(42),
-                            topRight: Radius.circular(42)),
-                        color: Colors.white,
+                          ],
+                        )),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(42),
+                              topRight: Radius.circular(42)),
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                ]),
+                  ],
+                ),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -110,20 +111,21 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                         const EdgeInsets.only(left: 10, right: 20, top: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 30, right: 15),
-                                    child: Text(
-                                        "To get AI generated design for your dream home please fill the form.",
-                                        style: Theme.of(context)
-                                            .primaryTextTheme
-                                            .headlineLarge))),
+                            Container(
+                                width: Get.width - 30,
+                                padding:
+                                    const EdgeInsets.only(left: 30, right: 15),
+                                child: Text(
+                                  "To get AI generated design for your dream home please fill the form.",
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .headlineLarge,
+                                  maxLines: 4,
+                                )),
                           ],
                         ),
                         Padding(
@@ -133,32 +135,34 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                             builder: (controller) => Form(
                               key: controller.formGlobalKey,
                               child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: TextFormField(
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                      validator: _validator,
-                                      controller: controller.cityController,
-                                      cursorColor: Colors.grey[600],
-                                      decoration: InputDecoration(
-                                        filled: true,
-                                        hintText: 'Enter your city',
-                                        hintStyle: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyMedium
-                                            ?.copyWith(color: Colors.black54),
-                                        fillColor:
-                                            AppColors.colorFromHex('#F1AD0A'),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
+                                  // City drop down
+                                  Obx(
+                                    () => Container(
+                                      height: 70,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                          color:
+                                              AppColors.colorFromHex('#F1AD0A'),
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
+                                      child: CustomDropDown(
+                                        hint: const Text("Select City"),
+                                        value:
+                                            controller.selectedCityName.value,
+                                        onChanged: (dynamic value) => {
+                                          controller.selectedCityName.value =
+                                              value
+                                        },
+                                        items: controller.cityList
+                                            .map(buildMenuItem)
+                                            .toList(),
                                       ),
                                     ),
                                   ),
+
                                   Padding(
                                       padding: const EdgeInsets.only(top: 15),
                                       child: TextFormField(
@@ -348,13 +352,6 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
                                       await Get.find<
                                               DesignYourHouseController>()
                                           .generateDesign();
-                                      Get.find<NavScreenController>()
-                                          .changeTabIndex(0);
-                                      Get.find<
-                                              SelectYourHouseDesignController>()
-                                          .getDesignData();
-                                      Get.find<NavScreenController>()
-                                          .changeTabIndex(3);
                                     },
                                     child:
                                         GetBuilder<DesignYourHouseController>(
@@ -390,5 +387,62 @@ class DesignYourDreamHouseScreen extends StatelessWidget {
       return 'This field is required';
     }
     return null;
+  }
+}
+
+DropdownMenuItem<String> buildMenuItem(String listVal) => DropdownMenuItem(
+    value: listVal,
+    child: Text(listVal,
+        style: Theme.of(Get.context!)
+            .primaryTextTheme
+            .bodyMedium
+            ?.copyWith(color: Colors.black54)));
+
+class CustomDropDown extends StatelessWidget {
+  const CustomDropDown({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    required this.items,
+    this.width,
+    this.hint,
+  });
+
+  final double? width;
+  final Function(String?)? onChanged;
+  final List<DropdownMenuItem<String>>? items;
+  final String? value;
+  final Widget? hint;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      width: (width ?? (Get.width > 500 ? Get.width / 1.17 : Get.width / 1.38)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        // border: Border.all(color: Colors.grey, width: 1),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          hint: hint ?? const SizedBox(),
+          value: value,
+          style: const TextStyle(color: Colors.grey, fontSize: 16),
+          isExpanded: true,
+          icon: Container(
+            decoration: const BoxDecoration(
+              color: Colors.black,
+            ),
+            child: const Icon(
+              Icons.arrow_drop_down_outlined,
+              color: Colors.amber,
+            ),
+          ),
+          items: items,
+          onChanged: onChanged,
+        ),
+      ),
+    );
   }
 }

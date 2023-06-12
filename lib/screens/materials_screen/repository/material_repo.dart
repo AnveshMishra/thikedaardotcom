@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:thikedaardotcom/screens/materials_screen/model/category_response_model.dart';
 
 import '../../../network/api_client.dart';
@@ -39,6 +40,22 @@ class MaterialRepo {
       return apiResponse;
     } on Exception catch (e) {
       return ApiResponse.error(e.toString());
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchCityList() async {
+    return {
+      "cities": [
+        {"id": "1", "name": "Mumbai", "state": "Maharashtra"},
+        {"id": "2", "name": "Delhi", "state": "Delhi"},
+        {"id": "3", "name": "Bengaluru", "state": "Karnataka"},
+      ],
+    };
+    try {
+      // final result = await _client.get(getCities);
+      // print("result : $result");
+    } catch (e) {
+      debugPrint("Err : designServices $e");
     }
   }
 }

@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import 'package:thikedaardotcom/bindings/bindings.dart';
 import 'package:thikedaardotcom/config/theme/light_theme.dart';
 import 'package:thikedaardotcom/screens/splash_screen/splash_screen.dart';
-import 'screens/login_screen/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

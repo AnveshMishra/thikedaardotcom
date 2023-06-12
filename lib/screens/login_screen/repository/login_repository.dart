@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:get_storage/get_storage.dart';
 import 'package:thikedaardotcom/network/api_client.dart';
 import 'package:thikedaardotcom/network/api_response.dart';
 import 'package:thikedaardotcom/screens/login_screen/model/login_response_model.dart';
+import 'package:thikedaardotcom/screens/nav_sceen.dart/constants/constants.dart';
 
 import '../../../network/api_end_points.dart';
 
@@ -23,9 +27,28 @@ class LoginRespository {
       );
       ApiResponse<LoginResponseModel> apiResponse =
           ApiResponse.success(LoginResponseModel.fromJson(response.data));
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> resultData = response.data;
+
+        if (resultData.isNotEmpty) {
+          // store user info
+          gUserInfo = {
+            "id": resultData["id"],
+            "username": resultData["username"],
+            "email": resultData["email"],
+            "role": resultData["roles"],
+            "token": resultData["token"],
+          };
+          // store user info local storage
+          GetStorage().write("userInfo", resultData.toString());
+        }
+      }
       return apiResponse;
     } on Exception catch (e) {
       return ApiResponse.error(e.toString());
     }
   }
+
+  // test user
+  // test6@architect
 }

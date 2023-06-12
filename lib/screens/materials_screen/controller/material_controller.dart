@@ -17,8 +17,10 @@ class MaterialController extends GetxController {
 
   Future<void> getCategoryResponse() async {
     apiResponse = ApiResponse<CategoryResponseModel>.loading();
+    print('--------->>>>>>$apiResponse.data');
     update();
     apiResponse = await MaterialRepo().fetchCategory();
+    print('--------->>>>>>$apiResponse.data');
     update();
   }
 

@@ -3,7 +3,9 @@ import 'package:sizer/sizer.dart';
 
 class IconsButton extends StatelessWidget {
   final String text;
-  const IconsButton({super.key, required this.text});
+  final String image;
+
+  const IconsButton({super.key, required this.text, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +18,11 @@ class IconsButton extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.amber,
+                // color: Colors.clear,
                 borderRadius: BorderRadius.circular(4),
               ),
-              child: const Icon(
-                Icons.settings,
-                color: Colors.white,
-                size: 36,
+              child: Image.network(image,
+                fit: BoxFit.fill,
               ),
             ),
             SizedBox(
@@ -36,7 +36,7 @@ class IconsButton extends StatelessWidget {
                   text,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).primaryTextTheme.bodySmall,
-                  maxLines: 2,
+                  maxLines: 1,
                 ),
               ),
             ),

@@ -1,8 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:thikedaardotcom/network/api_client.dart';
+import 'package:thikedaardotcom/network/api_end_points.dart';
 import 'package:thikedaardotcom/screens/design_your_house_screen/model/design_request_model.dart';
+import 'package:thikedaardotcom/screens/materials_screen/model/cities_model.dart';
+import 'package:thikedaardotcom/screens/materials_screen/repository/material_repo.dart';
+import 'package:thikedaardotcom/screens/nav_sceen.dart/controller/nav_screen_controller.dart';
+import 'package:thikedaardotcom/screens/select_your_house_design/controller/select_your_house_design_controller.dart';
 
 import '../../../network/api_response.dart';
 import '../model/design_your_house_response_model.dart';
@@ -20,6 +27,28 @@ class DesignYourHouseController extends GetxController {
   final formGlobalKey = GlobalKey<FormState>();
   ApiResponse<DesignYourHouseResponseModel> apiResponse =
       ApiResponse<DesignYourHouseResponseModel>.none();
+  late CityModel cityModel;
+  RxList<String> cityList = <String>[].obs;
+  RxString selectedCityName = "Select City".obs;
+  @override
+  void onInit() {
+    _fetchCityList();
+    super.onInit();
+  }
+
+  _fetchCityList() async {
+    final responseResult = await MaterialRepo().fetchCityList();
+    cityModel = CityModel.fromJson(responseResult);
+    if (cityModel.cities.isNotEmpty) {
+      List<String> lCityList = [
+        "Select City", // Initial hint text
+      ];
+      for (var element in cityModel.cities) {
+        lCityList.add(element.name);
+      }
+      cityList.value = lCityList;
+    }
+  }
 
   Future<bool> _handleLocationPermission() async {
     bool serviceEnabled;
@@ -56,13 +85,32 @@ class DesignYourHouseController extends GetxController {
     }
   }
 
+  bool validated() {
+    if (selectedCityName.value.contains("Select City")) {
+      Get.snackbar(
+        "Empty city",
+        "Please select city before going forward!",
+        backgroundColor: Colors.red,
+        snackPosition: SnackPosition.BOTTOM,
+        icon: const Icon(
+          Icons.close_rounded,
+          color: Colors.white,
+        ),
+      );
+      return false;
+    }
+    return true;
+  }
+
   Future<void> generateDesign() async {
+    // First validate
+    if (validated() == false) return;
     if (formGlobalKey.currentState?.validate() ?? false) {
       apiResponse = ApiResponse<DesignYourHouseResponseModel>.loading();
       update();
       apiResponse = await DesignYouHouseRepo().postDesignDetails(
         DesignRequestModel(
-                city: cityController.text,
+                city: selectedCityName.value,
                 plotLength: int.tryParse(plotLenth.text) ?? 0,
                 plotWidth: int.tryParse(plotWidth.text) ?? 0,
                 numberofFloors: int.tryParse(numberOfFloors.text) ?? 0,
@@ -73,6 +121,9 @@ class DesignYourHouseController extends GetxController {
       clearData();
       update();
     }
+    Get.find<NavScreenController>().changeTabIndex(0);
+    Get.find<SelectYourHouseDesignController>().getDesignData();
+    Get.find<NavScreenController>().changeTabIndex(3);
   }
 
   void clearData() {
